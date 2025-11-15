@@ -42,3 +42,23 @@ resource "aws_security_group" "lambda_sg" {
     Name = "${var.name_prefix}-lambda-sg"
   }
 }
+
+
+resource "aws_ssm_parameter" "vpc_id" {
+  name  = "/${var.name_prefix}/network/vpc-id"
+  type  = "String"
+  value = module.vpc.vpc_id
+}
+
+resource "aws_ssm_parameter" "lambda_security_group_id" {
+  name  = "/${var.name_prefix}/network/lambda-security-group-id"
+  type  = "String"
+  value = aws_security_group.lambda_sg.id
+}
+
+
+resource "aws_ssm_parameter" "lambda_subnet_ids" {
+  name  = "/${var.name_prefix}/network/lambda-subnet-ids"
+  type  = "StringList"
+  value = join(",", module.vpc.private_subnets)
+}

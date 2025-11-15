@@ -6,3 +6,10 @@
 4. Run `terraform init`
 5. Run `terraform plan`
 6. Run `terraform apply`
+
+
+# 1) Private key (2048-bit RSA)
+openssl genrsa -out cloudfront-private-key.pem 2048
+
+# 2) Public key in PEM format
+openssl rsa -in cloudfront-private-key.pem -pubout -out cloudfront-public-key.pem

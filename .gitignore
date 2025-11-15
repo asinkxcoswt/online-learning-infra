@@ -13,3 +13,6 @@ crash.log
 .terraform/
 .terraform.tfstate.lock.info
 terraform.tfstate.d/
+
+
+*.pem
